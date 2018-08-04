@@ -11,52 +11,55 @@ def hello_world():
     return 'Hello World!'
 
 
-tasks = [
+stocks = [
     {
         'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
+        'symbol': u'GOOG',
+        'open': 1000.3,
+        'exchange': u'NYSE',
         'done': False
     },
     {
         'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
+        'symbol': u'APPL',
+        'open': 210.3,
+        'exchange': u'NYSE',
         'done': False
     }
 ]
 
 
-@app.route('/tasks', methods=['GET'])
+@app.route('/stocks', methods=['GET'])
 def get_tasks():
-    return jsonify({'tasks': tasks})
+    return jsonify({'stocks': stocks})
 
 
-@app.route('/tasks/<int:task_id>', methods=['GET'])
-def get_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
+@app.route('/stocks/<int:s_id>', methods=['GET'])
+def get_task(s_id):
+    stock = [s for s in stocks if stocks['id'] == s_id]
+    if len(stock) == 0:
         abort(404)
-    return jsonify({'task': task[0]})
+    return jsonify({'stock': stock[0]})
 
 
-@app.route('/tasks', methods=['POST'])
+@app.route('/stocks', methods=['POST'])
 def create_task():
-    if not request.json or not 'title' in request.json:
+    if not request.json or not 'symbol' in request.json:
         abort(400)
-    task = {
-        'id': tasks[-1]['id'] + 1,
-        'title': request.json['title'],
-        'description': request.json.get('description', ""),
+    stock = {
+        'id': stocks[-1]['id'] + 1,
+        'symbol': request.json['symbol'],
+        'open': request.json.get('open', ""),
+        'exchange': request.json['exchange'],
         'done': False
     }
-    tasks.append(task)
-    return jsonify({'task': task}), 201
+    stocks.append(stock)
+    return jsonify({'stock': stock}), 201
 
 
 @app.route('/url')
 def get_data():
-    return requests.get('http://127.0.0.1:5000/tasks').content
+    return requests.get('http://127.0.0.1:5000/stocks').content
 
 
 if __name__ == '__main__':
