@@ -36,7 +36,7 @@ def get_tasks():
 
 @app.route('/stocks/<int:s_id>', methods=['GET'])
 def get_task(s_id):
-    stock = [s for s in stocks if stocks['id'] == s_id]
+    stock = [s for s in stocks if s['id'] == s_id]
     if len(stock) == 0:
         abort(404)
     return jsonify({'stock': stock[0]})
