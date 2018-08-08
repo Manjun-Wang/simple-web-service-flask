@@ -11,3 +11,10 @@ Job list: [stock loader]
 Api list: GET /api/stocks
           POST /api/stock
           GET /api/stock/:id
+          
+## tech stack
+Python Flask
+
+PgSQL
+
+ReactJS
