@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonif
 from flask import abort
 from flask import request
 import requests
