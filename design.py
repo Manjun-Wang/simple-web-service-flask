@@ -1,7 +1,7 @@
 """
 
 """
-0. From File to DB
+0. From File to 
 1. E-R to Model
     
     (Entity) Stock (id, name, open, close, exchange, datetime)
