@@ -17,4 +17,4 @@ Python Flask
 
 PgSQL
 
-ReactJS
+ReactJ
